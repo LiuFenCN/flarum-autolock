@@ -18,19 +18,19 @@ class ForumSettingsField
         return [
             Schema\Bool::make('acolasiAutolock.enabled')
                 ->visible(fn (object $model, Context $context) => $context->getActor()->isAdmin())
-                ->get(fn () => (bool) $this->settings->get('acolasi-autolock.enabled', false)),
+                ->get(fn () => (bool) $this->settings->get('autolock_enabled', false)),
 
             Schema\Number::make('acolasiAutolock.days')
                 ->visible(fn (object $model, Context $context) => $context->getActor()->isAdmin())
-                ->get(fn () => (int) $this->settings->get('acolasi-autolock.days', 30)),
+                ->get(fn () => (int) $this->settings->get('autolock_days', 90)),
 
             Schema\Bool::make('acolasiAutolock.ignoreSticky')
                 ->visible(fn (object $model, Context $context) => $context->getActor()->isAdmin())
-                ->get(fn () => (bool) $this->settings->get('acolasi-autolock.ignore_sticky', true)),
+                ->get(fn () => (bool) $this->settings->get('autolock_ignore_sticky', true)),
 
             Schema\Bool::make('acolasiAutolock.ignoreLocked')
                 ->visible(fn (object $model, Context $context) => $context->getActor()->isAdmin())
-                ->get(fn () => (bool) $this->settings->get('acolasi-autolock.ignore_locked', true)),
+                ->get(fn () => (bool) $this->settings->get('autolock_ignore_locked', true)),
         ];
     }
 }

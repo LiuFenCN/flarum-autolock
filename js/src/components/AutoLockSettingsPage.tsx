@@ -16,7 +16,7 @@ export default class AutoLockSettingsPage extends Component<IAttrs> {
   success = false;
 
   enabled: boolean = false;
-  days: number = 30;
+  days: number = 90;
   ignoreSticky: boolean = true;
   ignoreLocked: boolean = true;
 
@@ -24,7 +24,7 @@ export default class AutoLockSettingsPage extends Component<IAttrs> {
     super.oninit(vnode);
     const forum = app.data.attributes; // or app.forum.attribute()
     this.enabled = forum['acolasiAutolock.enabled'] || false;
-    this.days = forum['acolasiAutolock.days'] || 30;
+    this.days = forum['acolasiAutolock.days'] || 90;
     this.ignoreSticky = forum['acolasiAutolock.ignoreSticky'] !== false;
     this.ignoreLocked = forum['acolasiAutolock.ignoreLocked'] !== false;
   }
@@ -57,7 +57,7 @@ export default class AutoLockSettingsPage extends Component<IAttrs> {
                   min={1}
                   max={365}
                   value={this.days.toString()}
-                  onchange={(val: string) => (this.days = parseInt(val) || 30)}
+                  onchange={(val: string) => (this.days = parseInt(val) || 90)}
                   label={app.translator.trans('acolasi-autolock.admin.days_label')}
                   description={app.translator.trans('acolasi-autolock.admin.days_help')}
                 />

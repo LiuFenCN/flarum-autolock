@@ -5,7 +5,7 @@
  * Automatically lock discussions after N days of inactivity.
  */
 
-use Acolasi\Autolock\AutoLocker;
+use Acolasi\Autolock\Console\AutoLockCommand;
 use Flarum\Extend;
 
 return [
@@ -13,9 +13,10 @@ return [
     (new Extend\Frontend('admin'))
         ->js(__DIR__ . '/js/dist/admin.js'),
 
-    // Register the auto-lock scheduler
-    (new Extend\Schedule())
-        ->hourly(AutoLocker::class),
+    // Register console command + schedule it hourly
+    (new Extend\Console())
+        ->command(AutoLockCommand::class)
+        ->schedule(AutoLockCommand::class, fn ($event) => $event->hourly()),
 
     // Add settings to the Forum API
     (new Extend\ApiResource(\Flarum\Api\Resource\ForumResource::class))
