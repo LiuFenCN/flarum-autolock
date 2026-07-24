@@ -1,0 +1,18 @@
+# AutoLock - English
+acolasi-autolock:
+  admin:
+    nav:
+      title: "AutoLock"
+    page:
+      title: "AutoLock Settings"
+      description: "Automatically lock discussions that have been inactive for a specified number of days. The system checks once per hour."
+    settings: "Basic Settings"
+    enabled_label: "Enable AutoLock"
+    enabled_help: "When enabled, the system will automatically lock inactive discussions."
+    days_label: "Auto-lock after (days)"
+    days_help: "Number of days without new replies before auto-locking (1-365)."
+    ignore_sticky_label: "Ignore sticky discussions"
+    ignore_sticky_help: "Don't auto-lock pinned/sticky discussions."
+    ignore_locked_label: "Skip already locked"
+    ignore_locked_help: "Skip discussions that are already locked to avoid redundant operations."
+    saved: "Settings saved!"

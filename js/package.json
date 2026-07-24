@@ -1,0 +1,1 @@
+{"name": "flarum-autolock", "private": true, "scripts": {"build": "webpack --mode production", "dev": "webpack --mode development --watch"}, "devDependencies": {"flarum-webpack": "^2.0.0", "webpack": "^5", "webpack-cli": "^5", "@flarum/core": "^2.0.0", "ts-loader": "^9", "typescript": "^5"}}

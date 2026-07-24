@@ -1,0 +1,18 @@
+# AutoLock - 中文
+acolasi-autolock:
+  admin:
+    nav:
+      title: "自动锁帖"
+    page:
+      title: "自动锁帖设置"
+      description: "自动锁定超过指定天数没有新回复的讨论。系统每小时检查一次。"
+    settings: "基本设置"
+    enabled_label: "启用自动锁帖"
+    enabled_help: "开启后，系统将自动锁定长期不活跃的讨论。"
+    days_label: "自动锁帖天数"
+    days_help: "多少天无新回复后自动锁定该讨论（1-365天）。"
+    ignore_sticky_label: "忽略置顶帖"
+    ignore_sticky_help: "不自动锁定置顶的讨论。"
+    ignore_locked_label: "已跳过已锁定的"
+    ignore_locked_help: "不处理已经锁定的讨论（避免重复操作）。"
+    saved: "设置已保存！"
