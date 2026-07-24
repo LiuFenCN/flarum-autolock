@@ -25,7 +25,7 @@ class AutoLockCommand extends AbstractCommand
             ->setDescription('Automatically lock discussions that have been inactive for N days.');
     }
 
-    protected function fire()
+    protected function fire(): int
     {
         $locked = $this->locker->lockInactiveDiscussions();
 

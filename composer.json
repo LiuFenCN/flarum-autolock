@@ -1,1 +1,31 @@
-{"name": "acolasialiuliu/flarum-autolock", "description": "Automatically lock discussions after a configurable period of inactivity", "type": "flarum-extension", "keywords": ["flarum", "autolock", "lock", "discussion"], "license": "MIT", "require": {"flarum/core": "^2.0.0"}, "autoload": {"psr-4": {"Acolasi\\Autolock\\": "src/"}}, "extra": {"branch-alias": {"dev-main": "1.x-dev"}, "flarum-extension": {"title": "AutoLock", "category": "feature", "icon": {"name": "fas fa-lock", "backgroundColor": "#e74c3c", "color": "#fff"}}}}
+{
+    "name": "acolasialiuliu/flarum-autolock",
+    "description": "Automatically lock discussions after a configurable period of inactivity",
+    "type": "flarum-extension",
+    "keywords": ["flarum", "autolock", "lock", "discussion"],
+    "license": "CC-BY-NC-4.0",
+    "require": {
+        "flarum/core": "^2.0.0",
+        "nesbot/carbon": "^2.0 || ^3.0",
+        "psr/log": "^1.1 || ^2.0 || ^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Acolasi\\Autolock\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.x-dev"
+        },
+        "flarum-extension": {
+            "title": "AutoLock",
+            "category": "feature",
+            "icon": {
+                "name": "fas fa-lock",
+                "backgroundColor": "#e74c3c",
+                "color": "#fff"
+            }
+        }
+    }
+}

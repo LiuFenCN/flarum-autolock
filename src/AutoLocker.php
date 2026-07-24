@@ -2,8 +2,10 @@
 
 namespace Acolasi\Autolock;
 
+use Carbon\Carbon;
 use Flarum\Discussion\Discussion;
 use Flarum\Settings\SettingsRepositoryInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * AutoLock service: locks discussions inactive for N days.
@@ -11,7 +13,8 @@ use Flarum\Settings\SettingsRepositoryInterface;
 class AutoLocker
 {
     public function __construct(
-        protected SettingsRepositoryInterface $settings
+        protected SettingsRepositoryInterface $settings,
+        protected ?LoggerInterface $logger = null
     ) {
     }
 
@@ -22,19 +25,18 @@ class AutoLocker
      */
     public function lockInactiveDiscussions(): int
     {
-        $enabled = $this->settings->get('autolock_enabled', false);
-        $days = (int) $this->settings->get('autolock_days', 90);
-        $ignoreSticky = (bool) $this->settings->get('autolock_ignore_sticky', true);
-        $ignoreLocked = (bool) $this->settings->get('autolock_ignore_locked', true);
+        $enabled = (bool) $this->settings->get('acolasiAutolock.enabled', false);
+        $days = (int) $this->settings->get('acolasiAutolock.days', 90);
+        $ignoreSticky = (bool) $this->settings->get('acolasiAutolock.ignoreSticky', true);
 
         if (!$enabled || $days <= 0) {
             return 0;
         }
 
-        $cutoff = now()->subDays($days);
+        $cutoff = Carbon::now()->subDays($days);
 
         $query = Discussion::query()
-            ->whereNull('locked_at')
+            ->where('is_locked', false)
             ->where('last_posted_at', '<', $cutoff)
             ->where('comment_count', '>', 1); // Skip empty/single-post discussions
 
@@ -42,25 +44,21 @@ class AutoLocker
             $query->where('is_sticky', false);
         }
 
-        if ($ignoreLocked) {
-            // Already handled by whereNull('locked_at'), but keep for clarity
-        }
-
         $discussions = $query->get();
 
         $count = 0;
         foreach ($discussions as $discussion) {
-            if ($discussion->locked_at !== null) {
+            if ($discussion->is_locked) {
                 continue; // Race condition safety
             }
 
-            $discussion->lockAfter(now());
+            $discussion->is_locked = true;
             $discussion->save();
             $count++;
         }
 
-        if ($count > 0) {
-            logger()->info("[AutoLock] Locked {$count} discussion(s) inactive for more than {$days} days.");
+        if ($count > 0 && $this->logger) {
+            $this->logger->info("[AutoLock] Locked {$count} discussion(s) inactive for more than {$days} days.");
         }
 
         return $count;

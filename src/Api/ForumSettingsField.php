@@ -16,21 +16,21 @@ class ForumSettingsField
     public function __invoke(): array
     {
         return [
-            Schema\Bool::make('acolasiAutolock.enabled')
+            Schema\Boolean::make('acolasiAutolock.enabled')
                 ->visible(fn (object $model, Context $context) => $context->getActor()->isAdmin())
-                ->get(fn () => (bool) $this->settings->get('autolock_enabled', false)),
+                ->get(fn () => (bool) $this->settings->get('acolasiAutolock.enabled', false)),
 
             Schema\Number::make('acolasiAutolock.days')
                 ->visible(fn (object $model, Context $context) => $context->getActor()->isAdmin())
-                ->get(fn () => (int) $this->settings->get('autolock_days', 90)),
+                ->get(fn () => (int) $this->settings->get('acolasiAutolock.days', 90)),
 
-            Schema\Bool::make('acolasiAutolock.ignoreSticky')
+            Schema\Boolean::make('acolasiAutolock.ignoreSticky')
                 ->visible(fn (object $model, Context $context) => $context->getActor()->isAdmin())
-                ->get(fn () => (bool) $this->settings->get('autolock_ignore_sticky', true)),
+                ->get(fn () => (bool) $this->settings->get('acolasiAutolock.ignoreSticky', true)),
 
-            Schema\Bool::make('acolasiAutolock.ignoreLocked')
+            Schema\Boolean::make('acolasiAutolock.ignoreLocked')
                 ->visible(fn (object $model, Context $context) => $context->getActor()->isAdmin())
-                ->get(fn () => (bool) $this->settings->get('autolock_ignore_locked', true)),
+                ->get(fn () => (bool) $this->settings->get('acolasiAutolock.ignoreLocked', true)),
         ];
     }
 }
