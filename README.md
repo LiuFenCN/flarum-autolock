@@ -38,3 +38,13 @@ The system will automatically check every hour and lock eligible discussions.
 ## License
 
 MIT
+
+---
+
+## Contact / 联系作者
+
+| Channel | Address |
+|---|---|
+| 🏝️ Forum (CatIsland) | https://bbs.cathi.cn |
+| 💬 QQ Group | 369748859 |
+| 📮 Email | 792818521@qq.com |
