@@ -2,8 +2,13 @@
     "name": "acolasialiuliu/flarum-autolock",
     "description": "Automatically lock discussions after a configurable period of inactivity",
     "type": "flarum-extension",
-    "keywords": ["flarum", "autolock", "lock", "discussion"],
-    "license": "CC-BY-NC-4.0",
+    "keywords": [
+        "flarum",
+        "autolock",
+        "lock",
+        "discussion"
+    ],
+    "license": "AGPL-3.0-or-later",
     "require": {
         "flarum/core": "^2.0.0",
         "nesbot/carbon": "^2.0 || ^3.0",
